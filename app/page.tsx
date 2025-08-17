@@ -24,7 +24,7 @@ export default function TelecomLanding() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[#6941c6] via-[#5a37b0] to-[#4e2d9a] relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-20 left-20 w-16 h-16 bg-yellow-400 rounded-full opacity-80"></div>
       <div className="absolute top-40 right-32 w-8 h-8 bg-yellow-300 rounded-full opacity-60"></div>
@@ -76,7 +76,7 @@ export default function TelecomLanding() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
           <div className="text-white space-y-6">
-            <div className="inline-block bg-yellow-400 text-purple-800 px-6 py-2 rounded-full font-bold text-lg">
+            <div className="inline-block bg-yellow-400 text-[#6941c6] px-6 py-2 rounded-full font-bold text-lg">
               최대가입지원금 인싸통
             </div>
 
@@ -103,7 +103,7 @@ export default function TelecomLanding() {
             <Card className="w-full max-w-md bg-white/95 backdrop-blur-sm shadow-2xl">
               <CardContent className="p-8">
                 <div className="mb-6">
-                  <div className="bg-purple-600 text-white px-4 py-2 rounded-t-lg inline-block relative">
+                  <div className="bg-[#6941c6] text-white px-4 py-2 rounded-t-lg inline-block relative">
                     빠른견적문의
                   </div>
                 </div>
@@ -175,7 +175,7 @@ export default function TelecomLanding() {
                           onClick={() => setFormData({ ...formData, carrier })}
                           className={`py-3 px-4 rounded border text-center font-medium transition-colors ${
                             formData.carrier === carrier
-                              ? "bg-purple-600 text-white border-purple-600"
+                              ? "bg-[#6941c6] text-white border-[#6941c6]"
                               : "bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100"
                           }`}
                         >
@@ -195,7 +195,7 @@ export default function TelecomLanding() {
                           onClick={() => setFormData({ ...formData, service })}
                           className={`w-full py-3 px-4 rounded border text-center font-medium transition-colors ${
                             formData.service === service
-                              ? "bg-purple-600 text-white border-purple-600"
+                              ? "bg-[#6941c6] text-white border-[#6941c6]"
                               : "bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100"
                           }`}
                         >
@@ -212,7 +212,7 @@ export default function TelecomLanding() {
 
                   <Button
                     type="submit"
-                    className="w-full h-14 bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg rounded-lg"
+                    className="w-full h-14 bg-[#6941c6] hover:bg-[#5a37b0] text-white font-bold text-lg rounded-lg"
                   >
                     최대 지원금 확인 →
                   </Button>
