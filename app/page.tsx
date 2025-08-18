@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -10,6 +11,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { User, Menu, X } from "lucide-react"
 
 export default function TelecomLanding() {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -38,14 +40,8 @@ export default function TelecomLanding() {
       const data = await response.json()
 
       if (response.ok) {
-        setSubmitMessage("문의가 성공적으로 접수되었습니다! 곧 연락드리겠습니다.")
-        // Reset form
-        setFormData({
-          name: "",
-          phone: "",
-          carrier: "KT",
-          service: "인터넷",
-        })
+        // Redirect to thank you page on success
+        router.push("/thank-you")
       } else {
         setSubmitMessage("제출 중 오류가 발생했습니다. 다시 시도해주세요.")
       }
