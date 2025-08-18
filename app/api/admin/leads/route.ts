@@ -10,6 +10,35 @@ export async function GET(request: NextRequest) {
       // In production, implement proper authentication
     }
 
+    // Check if Supabase is configured
+    if (!supabase) {
+      // Return mock data if Supabase is not configured
+      return NextResponse.json({
+        leads: [
+          {
+            id: 1,
+            name: "테스트 사용자1",
+            phone: "010-1234-5678",
+            carrier: "KT",
+            service: "인터넷+TV",
+            created_at: new Date().toISOString(),
+            ip_address: "127.0.0.1",
+            user_agent: "Mozilla/5.0"
+          },
+          {
+            id: 2,
+            name: "테스트 사용자2",
+            phone: "010-9876-5432",
+            carrier: "SKT",
+            service: "인터넷",
+            created_at: new Date(Date.now() - 86400000).toISOString(),
+            ip_address: "127.0.0.1",
+            user_agent: "Mozilla/5.0"
+          }
+        ]
+      })
+    }
+
     // Fetch leads from Supabase
     const { data, error } = await supabase
       .from('kmong_10_leads')

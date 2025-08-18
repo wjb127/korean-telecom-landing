@@ -14,6 +14,18 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Check if Supabase is configured
+    if (!supabase) {
+      console.log('Supabase not configured, returning success without saving')
+      return NextResponse.json(
+        { 
+          message: 'Form submitted successfully (demo mode)',
+          data: [{ name, phone: `010-${phone}`, carrier, service }]
+        },
+        { status: 200 }
+      )
+    }
+
     // Get client info
     const ip_address = request.headers.get('x-forwarded-for') || 
                       request.headers.get('x-real-ip') || 
