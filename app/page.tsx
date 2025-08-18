@@ -17,10 +17,43 @@ export default function TelecomLanding() {
     service: "인터넷",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState("")
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
-    // Handle form submission here
+    setIsSubmitting(true)
+    setSubmitMessage("")
+
+    try {
+      const response = await fetch("/api/submit-lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setSubmitMessage("문의가 성공적으로 접수되었습니다! 곧 연락드리겠습니다.")
+        // Reset form
+        setFormData({
+          name: "",
+          phone: "",
+          carrier: "KT",
+          service: "인터넷",
+        })
+      } else {
+        setSubmitMessage("제출 중 오류가 발생했습니다. 다시 시도해주세요.")
+      }
+    } catch (error) {
+      console.error("Submit error:", error)
+      setSubmitMessage("네트워크 오류가 발생했습니다. 다시 시도해주세요.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -38,9 +71,9 @@ export default function TelecomLanding() {
       <div className="absolute bottom-60 right-1/3 text-white text-2xl opacity-60">✦</div>
 
       {/* Header */}
-      <header className="flex justify-between items-center p-6 text-white">
-        <div className="text-2xl font-bold">인싸통</div>
-        <nav className="flex space-x-8 text-sm">
+      <header className="flex justify-between items-center p-4 md:p-6 text-white">
+        <div className="text-xl md:text-2xl font-bold">인싸통</div>
+        <nav className="hidden lg:flex space-x-6 xl:space-x-8 text-sm">
           <a href="#" className="hover:text-yellow-300 transition-colors">
             KT
           </a>
@@ -67,41 +100,41 @@ export default function TelecomLanding() {
           </a>
         </nav>
         <div className="flex items-center">
-          <User className="w-6 h-6" />
+          <User className="w-5 h-5 md:w-6 md:h-6" />
         </div>
       </header>
 
       {/* Main content */}
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 sm:px-6 py-8 md:py-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left content */}
           <div className="text-white space-y-6">
-            <div className="inline-block bg-yellow-400 text-[#6941c6] px-6 py-2 rounded-full font-bold text-lg">
+            <div className="inline-block bg-yellow-400 text-[#6941c6] px-4 sm:px-6 py-2 rounded-full font-bold text-base sm:text-lg">
               최대가입지원금 인싸통
             </div>
 
-            <div className="space-y-4">
-              <p className="text-lg opacity-90">인터넷 · TV · 유심</p>
-              <h1 className="text-5xl font-bold leading-tight">지금 통신사 변경하면?!</h1>
-              <div className="text-4xl font-bold text-yellow-400 flex items-center gap-2">
+            <div className="space-y-3 sm:space-y-4">
+              <p className="text-base sm:text-lg opacity-90">인터넷 · TV · 유심</p>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">지금 통신사 변경하면?!</h1>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-yellow-400 flex items-center gap-2">
                 <span className="text-white">✨</span>
                 최대 140만원 혜택
               </div>
-              <p className="text-3xl font-bold">현금 당일 지급!</p>
+              <p className="text-xl sm:text-2xl lg:text-3xl font-bold">현금 당일 지급!</p>
             </div>
 
-            <div className="space-y-2 text-lg">
+            <div className="space-y-2 text-base sm:text-lg">
               <p>인싸통에서 상담받고</p>
               <p>숨은 지원금 받아가세요!</p>
             </div>
 
-            <p className="text-sm opacity-75">※ 지원 혜택은 통신사 및 상품에 따라 상이 합니다.</p>
+            <p className="text-xs sm:text-sm opacity-75">※ 지원 혜택은 통신사 및 상품에 따라 상이 합니다.</p>
           </div>
 
           {/* Right form */}
           <div className="flex justify-center lg:justify-end">
             <Card className="w-full max-w-md bg-white/95 backdrop-blur-sm shadow-2xl">
-              <CardContent className="p-8">
+              <CardContent className="p-6 sm:p-8">
                 <div className="mb-6">
                   <div className="bg-[#6941c6] text-white px-4 py-2 rounded-t-lg inline-block relative">
                     빠른견적문의
@@ -127,12 +160,12 @@ export default function TelecomLanding() {
                     <Label htmlFor="phone" className="text-gray-700 font-medium">
                       휴대폰 번호
                     </Label>
-                    <div className="flex mt-2 gap-2 items-center">
+                    <div className="flex mt-2 gap-1 sm:gap-2 items-center">
                       <Input
                         type="text"
                         value="010"
                         readOnly
-                        className="h-12 w-20 text-center bg-gray-50 border-gray-200"
+                        className="h-10 sm:h-12 w-16 sm:w-20 text-center bg-gray-50 border-gray-200 text-sm sm:text-base"
                       />
                       <span className="text-gray-400">-</span>
                       <Input
@@ -143,7 +176,7 @@ export default function TelecomLanding() {
                           const secondPart = formData.phone.split("-")[1] || ""
                           setFormData({ ...formData, phone: `${value}-${secondPart}` })
                         }}
-                        className="h-12 w-20"
+                        className="h-10 sm:h-12 w-16 sm:w-20 text-sm sm:text-base"
                         placeholder="1234"
                         maxLength={4}
                         required
@@ -157,7 +190,7 @@ export default function TelecomLanding() {
                           const firstPart = formData.phone.split("-")[0] || ""
                           setFormData({ ...formData, phone: `${firstPart}-${value}` })
                         }}
-                        className="h-12 w-20"
+                        className="h-10 sm:h-12 w-16 sm:w-20 text-sm sm:text-base"
                         placeholder="5678"
                         maxLength={4}
                         required
@@ -173,7 +206,7 @@ export default function TelecomLanding() {
                           key={carrier}
                           type="button"
                           onClick={() => setFormData({ ...formData, carrier })}
-                          className={`py-3 px-4 rounded border text-center font-medium transition-colors ${
+                          className={`py-2.5 sm:py-3 px-3 sm:px-4 rounded border text-center font-medium transition-colors text-sm sm:text-base ${
                             formData.carrier === carrier
                               ? "bg-[#6941c6] text-white border-[#6941c6]"
                               : "bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100"
@@ -193,7 +226,7 @@ export default function TelecomLanding() {
                           key={service}
                           type="button"
                           onClick={() => setFormData({ ...formData, service })}
-                          className={`w-full py-3 px-4 rounded border text-center font-medium transition-colors ${
+                          className={`w-full py-2.5 sm:py-3 px-3 sm:px-4 rounded border text-center font-medium transition-colors text-sm sm:text-base ${
                             formData.service === service
                               ? "bg-[#6941c6] text-white border-[#6941c6]"
                               : "bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100"
@@ -212,10 +245,21 @@ export default function TelecomLanding() {
 
                   <Button
                     type="submit"
-                    className="w-full h-14 bg-[#6941c6] hover:bg-[#5a37b0] text-white font-bold text-lg rounded-lg"
+                    disabled={isSubmitting}
+                    className="w-full h-12 sm:h-14 bg-[#6941c6] hover:bg-[#5a37b0] text-white font-bold text-base sm:text-lg rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    최대 지원금 확인 →
+                    {isSubmitting ? "제출 중..." : "최대 지원금 확인 →"}
                   </Button>
+
+                  {submitMessage && (
+                    <div className={`mt-4 p-2.5 sm:p-3 rounded text-center text-sm sm:text-base ${
+                      submitMessage.includes("성공") 
+                        ? "bg-green-100 text-green-700" 
+                        : "bg-red-100 text-red-700"
+                    }`}>
+                      {submitMessage}
+                    </div>
+                  )}
                 </form>
               </CardContent>
             </Card>
