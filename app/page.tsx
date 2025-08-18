@@ -173,19 +173,6 @@ export default function TelecomLanding() {
             </div>
 
             <p className="text-xs sm:text-sm opacity-75">※ 지원 혜택은 통신사 및 상품에 따라 상이 합니다.</p>
-            
-            {/* Mobile CTA Button */}
-            <div className="lg:hidden flex justify-center">
-              <button
-                onClick={() => {
-                  const formElement = document.getElementById('contact-form')
-                  formElement?.scrollIntoView({ behavior: 'smooth' })
-                }}
-                className="bg-yellow-400 text-[#6941c6] px-8 py-3 rounded-full font-bold text-lg hover:bg-yellow-300 transition-colors"
-              >
-                빠른견적문의
-              </button>
-            </div>
           </div>
 
           {/* Right form */}
