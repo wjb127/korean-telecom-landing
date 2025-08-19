@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Next.js 15 application using TypeScript and Tailwind CSS v4 for a Korean telecom service landing page. The project uses the new App Router architecture and includes a comprehensive UI component library based on shadcn/ui.
+Korean telecom service landing page built with Next.js 15 App Router, TypeScript, and Tailwind CSS v4. The application features a lead generation form with Supabase backend integration and an admin dashboard for lead management.
 
 ## Tech Stack
 
@@ -13,18 +13,18 @@ This is a Next.js 15 application using TypeScript and Tailwind CSS v4 for a Kore
 - **Styling**: Tailwind CSS v4 with @tailwindcss/postcss
 - **UI Components**: shadcn/ui components with Radix UI primitives
 - **Forms**: react-hook-form with zod validation
+- **Database**: Supabase (PostgreSQL)
+- **Testing**: Jest with React Testing Library
 - **Package Manager**: pnpm (based on pnpm-lock.yaml presence)
 
-## Common Development Commands
+## Development Commands
 
 ```bash
-# Install dependencies (use pnpm)
+# Install dependencies
 pnpm install
 
 # Start development server
 pnpm run dev
-# or
-npm run dev
 
 # Build for production
 pnpm run build
@@ -34,39 +34,58 @@ pnpm run start
 
 # Run linting
 pnpm run lint
+
+# Run tests
+pnpm run test
+
+# Run tests in watch mode
+pnpm run test:watch
+
+# Run tests with coverage
+pnpm run test:coverage
 ```
 
-## Project Structure
+## Environment Configuration
 
-- `/app` - Next.js App Router pages and layouts
-  - `layout.tsx` - Root layout with Geist font configuration
-  - `page.tsx` - Main landing page (client component)
-  - `globals.css` - Global styles with Tailwind directives
-- `/components` - React components
-  - `/ui` - shadcn/ui component library (40+ components)
-  - `theme-provider.tsx` - Theme context provider
-- `/lib` - Utility functions and helpers
-  - `utils.ts` - Common utilities including cn() for className merging
-- `/hooks` - Custom React hooks
-- `/public` - Static assets and images
+Required environment variables (see .env.local for reference):
+- `NEXT_PUBLIC_SUPABASE_URL` - Supabase project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Supabase anonymous key
+- `SUPABASE_SERVICE_ROLE_KEY` - Supabase service role key (server-side only)
+- `ADMIN_PASSWORD` - Password for admin dashboard access
 
-## Architecture Notes
+## Application Architecture
 
-1. **Component Library**: The project uses shadcn/ui components installed via the components.json configuration. All UI components are in `/components/ui` and use Radix UI primitives for accessibility.
+### Pages & Routes
+- `/` - Main landing page with lead generation form
+- `/thank-you` - Post-submission confirmation page
+- `/admin` - Password-protected admin dashboard for lead management
+- `/api/submit-lead` - API endpoint for form submission
+- `/api/admin/leads` - API endpoint for admin lead operations (GET, DELETE)
 
-2. **Styling System**: Tailwind CSS v4 is configured with PostCSS. The project uses CSS variables for theming and the `cn()` utility from `/lib/utils` for conditional className management.
+### Key Features
+1. **Lead Generation Form**: Collects name, phone, carrier selection, and service type
+2. **Supabase Integration**: Stores leads with IP address and user agent tracking
+3. **Admin Dashboard**: View, export (CSV), and delete leads with password protection
+4. **Form Validation**: Client-side validation using zod schemas
+5. **Responsive Design**: Mobile-optimized with hamburger menu navigation
 
-3. **Form Handling**: The main page demonstrates form handling with react-hook-form, managing state for a telecom service signup form with fields for name, phone, carrier selection, and service type.
+### Database Schema
+The Supabase `leads` table includes:
+- `id` (auto-increment primary key)
+- `name`, `phone`, `carrier`, `service` (form fields)
+- `created_at` (timestamp)
+- `ip_address`, `user_agent` (tracking metadata)
 
-4. **Path Aliases**: TypeScript is configured with `@/*` path alias pointing to the project root, allowing imports like `@/components/ui/button`.
+## Testing Strategy
 
-5. **Build Configuration**: The next.config.mjs has ESLint and TypeScript errors disabled during builds (ignoreDuringBuilds: true, ignoreBuildErrors: true), and images are unoptimized.
+Jest is configured with:
+- Test environment: jsdom
+- Setup file: `jest.setup.js` (includes @testing-library/jest-dom and mock env vars)
+- Path alias support: `@/*` maps to project root
+- Coverage collection from app/, components/, and lib/ directories
 
-## Development Guidelines
+## Build Configuration Notes
 
-- Use pnpm as the package manager
-- Components should be client-side by default (use "use client" directive)
-- Utilize existing UI components from `/components/ui` before creating new ones
-- Follow the existing pattern for form handling with react-hook-form
-- Use the `cn()` utility for conditional classNames
-- Tailwind classes should be used for styling
+- Next.js config has ESLint and TypeScript errors disabled during builds (`ignoreDuringBuilds: true`, `ignoreBuildErrors: true`)
+- Images are set to unoptimized mode
+- TypeScript path alias `@/*` points to project root for clean imports
