@@ -677,7 +677,7 @@ export default function TelecomLanding() {
             <h3 className="text-2xl font-bold mb-6">인싸통</h3>
             <div className="grid md:grid-cols-2 gap-6 text-sm">
               <div className="space-y-2">
-                <p>상호: 컨우네트웍스 | 사이트명: 인싸통 | 대표자명: 엄승준</p>
+                <p>상호: 건우네트웍스 | 사이트명: 인싸통 | 대표자명: 엄승준</p>
                 <p>사업자등록번호: 648-09-02569 | 대표번호: 1555-1648</p>
                 <p>주소: 서울 구로구 디지털로34길 55 코오롱싸이언스밸리2차 904호</p>
               </div>
@@ -697,14 +697,6 @@ export default function TelecomLanding() {
           <div className="border-t border-[#5a37b0] pt-6">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-sm">Copyright 2025 © 인싸통. All rights reserved.</p>
-              <div className="flex space-x-3 mt-4 md:mt-0">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100 transition">
-                  <Instagram className="w-5 h-5 text-[#6941c6]" />
-                </div>
-                <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center cursor-pointer hover:bg-yellow-500 transition">
-                  <MessageCircle className="w-5 h-5 text-black" />
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -712,7 +704,7 @@ export default function TelecomLanding() {
         {/* Floating Buttons */}
         <div className="fixed bottom-6 right-6 space-y-3 z-50">
           <Button 
-            onClick={() => window.open('http://pf.kakao.com/_xexdxjxj', '_blank')}
+            onClick={() => window.open('http://pf.kakao.com/_xomaXn', '_blank')}
             className="w-14 h-14 rounded-full bg-yellow-400 hover:bg-yellow-500 text-black shadow-lg"
           >
             <MessageCircle className="w-6 h-6" />
