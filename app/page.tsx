@@ -75,61 +75,61 @@ export default function TelecomLanding() {
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center h-16 px-6">
             <div className={`text-2xl font-bold transition-colors duration-300 ${
-              isScrolled ? 'text-purple-600' : 'text-white'
+              isScrolled ? 'text-[#6941c6]' : 'text-white'
             }`}>인싸통</div>
             <nav className="flex items-center space-x-8">
               <a href="/kt" className={`font-medium transition-colors ${
                 isScrolled 
-                  ? 'text-gray-700 hover:text-purple-600' 
+                  ? 'text-gray-700 hover:text-[#6941c6]' 
                   : 'text-white hover:text-yellow-300'
               }`}>
                 KT
               </a>
               <a href="/lg" className={`font-medium transition-colors ${
                 isScrolled 
-                  ? 'text-gray-700 hover:text-purple-600' 
+                  ? 'text-gray-700 hover:text-[#6941c6]' 
                   : 'text-white hover:text-yellow-300'
               }`}>
                 LG
               </a>
               <a href="/sk" className={`font-medium transition-colors ${
                 isScrolled 
-                  ? 'text-gray-700 hover:text-purple-600' 
+                  ? 'text-gray-700 hover:text-[#6941c6]' 
                   : 'text-white hover:text-yellow-300'
               }`}>
                 SK
               </a>
               <a href="/skylife" className={`font-medium transition-colors ${
                 isScrolled 
-                  ? 'text-gray-700 hover:text-purple-600' 
+                  ? 'text-gray-700 hover:text-[#6941c6]' 
                   : 'text-white hover:text-yellow-300'
               }`}>
                 스카이라이프
               </a>
               <a href="/lghellovision" className={`font-medium transition-colors ${
                 isScrolled 
-                  ? 'text-gray-700 hover:text-purple-600' 
+                  ? 'text-gray-700 hover:text-[#6941c6]' 
                   : 'text-white hover:text-yellow-300'
               }`}>
                 LG헬로비전
               </a>
               <a href="/skbroad" className={`font-medium transition-colors ${
                 isScrolled 
-                  ? 'text-gray-700 hover:text-purple-600' 
+                  ? 'text-gray-700 hover:text-[#6941c6]' 
                   : 'text-white hover:text-yellow-300'
               }`}>
                 SK브로드
               </a>
               <a href="/review" className={`font-medium transition-colors ${
                 isScrolled 
-                  ? 'text-gray-700 hover:text-purple-600' 
+                  ? 'text-gray-700 hover:text-[#6941c6]' 
                   : 'text-white hover:text-yellow-300'
               }`}>
                 설치후기
               </a>
               <a href="/events" className={`font-medium transition-colors ${
                 isScrolled 
-                  ? 'text-gray-700 hover:text-purple-600' 
+                  ? 'text-gray-700 hover:text-[#6941c6]' 
                   : 'text-white hover:text-yellow-300'
               }`}>
                 이벤트
@@ -381,7 +381,7 @@ export default function TelecomLanding() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              <span className="text-purple-600">인싸통</span>만의 특별 혜택
+              <span className="text-[#6941c6]">인싸통</span>만의 특별 혜택
               <br />각 통신사 대표 상품
             </h2>
           </div>
@@ -391,7 +391,7 @@ export default function TelecomLanding() {
               <CardContent className="p-8">
                 <div className="flex items-center justify-between mb-6">
                   <span className="text-2xl font-bold text-blue-600">KT</span>
-                  <span className="text-sm text-purple-600 font-medium cursor-pointer hover:underline">
+                  <span className="text-sm text-[#6941c6] font-medium cursor-pointer hover:underline">
                     최대지원금 확인하기 →
                   </span>
                 </div>
@@ -402,7 +402,7 @@ export default function TelecomLanding() {
                 </h3>
                 <div className="space-y-2">
                   <p className="text-sm text-gray-500 line-through">45,100원</p>
-                  <p className="text-3xl font-bold text-purple-600">39,600원/월</p>
+                  <p className="text-3xl font-bold text-[#6941c6]">39,600원/월</p>
                 </div>
               </CardContent>
             </Card>
@@ -412,7 +412,7 @@ export default function TelecomLanding() {
               <CardContent className="p-8">
                 <div className="flex items-center justify-between mb-6">
                   <span className="text-2xl font-bold text-red-600">SK</span>
-                  <span className="text-sm text-purple-600 font-medium cursor-pointer hover:underline">
+                  <span className="text-sm text-[#6941c6] font-medium cursor-pointer hover:underline">
                     최대지원금 확인하기 →
                   </span>
                 </div>
@@ -423,7 +423,7 @@ export default function TelecomLanding() {
                 </h3>
                 <div className="space-y-2">
                   <p className="text-sm text-gray-500 line-through">46,200원</p>
-                  <p className="text-3xl font-bold text-purple-600">39,600원/월</p>
+                  <p className="text-3xl font-bold text-[#6941c6]">39,600원/월</p>
                 </div>
               </CardContent>
             </Card>
@@ -433,7 +433,7 @@ export default function TelecomLanding() {
               <CardContent className="p-8">
                 <div className="flex items-center justify-between mb-6">
                   <span className="text-2xl font-bold text-pink-600">LG U+</span>
-                  <span className="text-sm text-purple-600 font-medium cursor-pointer hover:underline">
+                  <span className="text-sm text-[#6941c6] font-medium cursor-pointer hover:underline">
                     최대지원금 확인하기 →
                   </span>
                 </div>
@@ -444,7 +444,7 @@ export default function TelecomLanding() {
                 </h3>
                 <div className="space-y-2">
                   <p className="text-sm text-gray-500 line-through">44,000원</p>
-                  <p className="text-3xl font-bold text-purple-600">34,100원/월</p>
+                  <p className="text-3xl font-bold text-[#6941c6]">34,100원/월</p>
                 </div>
               </CardContent>
             </Card>
@@ -457,7 +457,7 @@ export default function TelecomLanding() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              <span className="text-purple-600">인싸통</span>에서는
+              <span className="text-[#6941c6]">인싸통</span>에서는
               <br />
               모든 혜택을 받을 수 있어요
             </h2>
@@ -570,7 +570,7 @@ export default function TelecomLanding() {
                     className="object-contain"
                   />
                 </div>
-                <ArrowRight className="absolute -right-8 top-1/2 transform -translate-y-1/2 w-6 h-6 text-purple-600 hidden md:block" />
+                <ArrowRight className="absolute -right-8 top-1/2 transform -translate-y-1/2 w-6 h-6 text-[#6941c6] hidden md:block" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">가입상담</h3>
               <p className="text-gray-600">
@@ -591,7 +591,7 @@ export default function TelecomLanding() {
                     className="object-contain"
                   />
                 </div>
-                <ArrowRight className="absolute -right-8 top-1/2 transform -translate-y-1/2 w-6 h-6 text-purple-600 hidden md:block" />
+                <ArrowRight className="absolute -right-8 top-1/2 transform -translate-y-1/2 w-6 h-6 text-[#6941c6] hidden md:block" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">설치</h3>
               <p className="text-gray-600">
@@ -661,7 +661,7 @@ export default function TelecomLanding() {
           <div className="flex justify-start">
             <Button 
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-lg font-bold rounded-full"
+              className="bg-[#6941c6] hover:bg-[#5a37b0] text-white px-8 py-4 text-lg font-bold rounded-full"
             >
               문의하기
               <ArrowRight className="ml-2 w-5 h-5" />
@@ -671,7 +671,7 @@ export default function TelecomLanding() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-purple-600 text-white py-12">
+      <footer className="bg-[#6941c6] text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
             <h3 className="text-2xl font-bold mb-6">인싸통</h3>
@@ -694,12 +694,12 @@ export default function TelecomLanding() {
             </div>
           </div>
           
-          <div className="border-t border-purple-500 pt-6">
+          <div className="border-t border-[#5a37b0] pt-6">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-sm">Copyright 2025 © 인싸통. All rights reserved.</p>
               <div className="flex space-x-3 mt-4 md:mt-0">
                 <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100 transition">
-                  <Instagram className="w-5 h-5 text-purple-600" />
+                  <Instagram className="w-5 h-5 text-[#6941c6]" />
                 </div>
                 <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center cursor-pointer hover:bg-yellow-500 transition">
                   <MessageCircle className="w-5 h-5 text-black" />
