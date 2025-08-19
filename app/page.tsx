@@ -2,13 +2,14 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
 import { User, Menu, X, ArrowRight, Phone, MapPin, CreditCard, Star, Instagram, MessageCircle } from "lucide-react"
+import Image from "next/image"
 
 export default function TelecomLanding() {
   const router = useRouter()
@@ -22,6 +23,16 @@ export default function TelecomLanding() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState("")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -54,51 +65,105 @@ export default function TelecomLanding() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#6941c6] via-[#5a37b0] to-[#4e2d9a] relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="hidden sm:block absolute top-20 left-20 w-16 h-16 bg-yellow-400 rounded-full opacity-80"></div>
-      <div className="hidden sm:block absolute top-40 right-32 w-8 h-8 bg-yellow-300 rounded-full opacity-60"></div>
-      <div className="hidden sm:block absolute bottom-32 left-16 w-12 h-12 bg-yellow-400 rounded-full opacity-70"></div>
-      <div className="hidden sm:block absolute bottom-20 right-20 w-20 h-20 bg-yellow-400 rounded-full opacity-80"></div>
+    <>
+      {/* Fixed Header for Desktop */}
+      <header className={`fixed top-0 left-0 right-0 z-50 hidden lg:block transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white shadow-md' 
+          : 'bg-transparent'
+      }`}>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-center h-16 px-6">
+            <div className={`text-2xl font-bold transition-colors duration-300 ${
+              isScrolled ? 'text-purple-600' : 'text-white'
+            }`}>인싸통</div>
+            <nav className="flex items-center space-x-8">
+              <a href="/kt" className={`font-medium transition-colors ${
+                isScrolled 
+                  ? 'text-gray-700 hover:text-purple-600' 
+                  : 'text-white hover:text-yellow-300'
+              }`}>
+                KT
+              </a>
+              <a href="/lg" className={`font-medium transition-colors ${
+                isScrolled 
+                  ? 'text-gray-700 hover:text-purple-600' 
+                  : 'text-white hover:text-yellow-300'
+              }`}>
+                LG
+              </a>
+              <a href="/sk" className={`font-medium transition-colors ${
+                isScrolled 
+                  ? 'text-gray-700 hover:text-purple-600' 
+                  : 'text-white hover:text-yellow-300'
+              }`}>
+                SK
+              </a>
+              <a href="/skylife" className={`font-medium transition-colors ${
+                isScrolled 
+                  ? 'text-gray-700 hover:text-purple-600' 
+                  : 'text-white hover:text-yellow-300'
+              }`}>
+                스카이라이프
+              </a>
+              <a href="/lghellovision" className={`font-medium transition-colors ${
+                isScrolled 
+                  ? 'text-gray-700 hover:text-purple-600' 
+                  : 'text-white hover:text-yellow-300'
+              }`}>
+                LG헬로비전
+              </a>
+              <a href="/skbroad" className={`font-medium transition-colors ${
+                isScrolled 
+                  ? 'text-gray-700 hover:text-purple-600' 
+                  : 'text-white hover:text-yellow-300'
+              }`}>
+                SK브로드
+              </a>
+              <a href="/review" className={`font-medium transition-colors ${
+                isScrolled 
+                  ? 'text-gray-700 hover:text-purple-600' 
+                  : 'text-white hover:text-yellow-300'
+              }`}>
+                설치후기
+              </a>
+              <a href="/events" className={`font-medium transition-colors ${
+                isScrolled 
+                  ? 'text-gray-700 hover:text-purple-600' 
+                  : 'text-white hover:text-yellow-300'
+              }`}>
+                이벤트
+              </a>
+            </nav>
+            <div className="flex items-center">
+              <User className={`w-6 h-6 transition-colors duration-300 ${
+                isScrolled ? 'text-gray-600' : 'text-white'
+              }`} />
+            </div>
+          </div>
+        </div>
+      </header>
 
-      {/* Star decorations */}
-      <div className="hidden sm:block absolute top-32 left-1/2 text-white text-2xl opacity-60">✦</div>
-      <div className="hidden sm:block absolute top-60 right-1/4 text-white text-xl opacity-50">✦</div>
-      <div className="hidden sm:block absolute bottom-40 left-1/3 text-white text-lg opacity-40">✦</div>
-      <div className="hidden sm:block absolute bottom-60 right-1/3 text-white text-2xl opacity-60">✦</div>
+      <div className="min-h-screen bg-gradient-to-br from-[#6941c6] via-[#5a37b0] to-[#4e2d9a] relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="hidden sm:block absolute top-20 left-20 w-16 h-16 bg-yellow-400 rounded-full opacity-80"></div>
+        <div className="hidden sm:block absolute top-40 right-32 w-8 h-8 bg-yellow-300 rounded-full opacity-60"></div>
+        <div className="hidden sm:block absolute bottom-32 left-16 w-12 h-12 bg-yellow-400 rounded-full opacity-70"></div>
+        <div className="hidden sm:block absolute bottom-20 right-20 w-20 h-20 bg-yellow-400 rounded-full opacity-80"></div>
 
-      {/* Header */}
-      <header className="relative">
-        <div className="flex justify-between items-center p-4 md:p-6 text-white">
-          <div className="text-xl md:text-2xl font-bold">인싸통</div>
-          <nav className="hidden lg:flex space-x-6 xl:space-x-8 text-sm">
-            <a href="#" className="hover:text-yellow-300 transition-colors">
-              KT
-            </a>
-            <a href="#" className="hover:text-yellow-300 transition-colors">
-              LG
-            </a>
-            <a href="#" className="hover:text-yellow-300 transition-colors">
-              SK
-            </a>
-            <a href="#" className="hover:text-yellow-300 transition-colors">
-              스카이라이프
-            </a>
-            <a href="#" className="hover:text-yellow-300 transition-colors">
-              LG헬로비전
-            </a>
-            <a href="#" className="hover:text-yellow-300 transition-colors">
-              SK브로드
-            </a>
-            <a href="#" className="hover:text-yellow-300 transition-colors">
-              설치후기
-            </a>
-            <a href="#" className="hover:text-yellow-300 transition-colors">
-              이벤트
-            </a>
-          </nav>
-          <div className="flex items-center gap-3">
-            <User className="w-5 h-5 md:w-6 md:h-6 hidden lg:block" />
+        {/* Star decorations */}
+        <div className="hidden sm:block absolute top-32 left-1/2 text-white text-2xl opacity-60">✦</div>
+        <div className="hidden sm:block absolute top-60 right-1/4 text-white text-xl opacity-50">✦</div>
+        <div className="hidden sm:block absolute bottom-40 left-1/3 text-white text-lg opacity-40">✦</div>
+        <div className="hidden sm:block absolute bottom-60 right-1/3 text-white text-2xl opacity-60">✦</div>
+
+        {/* Desktop padding for transparent header */}
+        <div className="hidden lg:block h-16"></div>
+        
+        {/* Mobile Header */}
+        <header className="relative lg:hidden">
+          <div className="flex justify-between items-center p-4 md:p-6 text-white">
+            <div className="text-xl md:text-2xl font-bold">인싸통</div>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden"
@@ -111,43 +176,42 @@ export default function TelecomLanding() {
               )}
             </button>
           </div>
-        </div>
-        
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <nav className="lg:hidden absolute top-full left-0 right-0 bg-[#6941c6]/95 backdrop-blur-sm border-t border-white/20">
-            <div className="flex flex-col p-4 space-y-3">
-              <a href="#" className="text-white hover:text-yellow-300 transition-colors py-2">
-                KT
-              </a>
-              <a href="#" className="text-white hover:text-yellow-300 transition-colors py-2">
-                LG
-              </a>
-              <a href="#" className="text-white hover:text-yellow-300 transition-colors py-2">
-                SK
-              </a>
-              <a href="#" className="text-white hover:text-yellow-300 transition-colors py-2">
-                스카이라이프
-              </a>
-              <a href="#" className="text-white hover:text-yellow-300 transition-colors py-2">
-                LG헬로비전
-              </a>
-              <a href="#" className="text-white hover:text-yellow-300 transition-colors py-2">
-                SK브로드
-              </a>
-              <a href="#" className="text-white hover:text-yellow-300 transition-colors py-2">
-                설치후기
-              </a>
-              <a href="#" className="text-white hover:text-yellow-300 transition-colors py-2">
-                이벤트
-              </a>
-            </div>
-          </nav>
-        )}
-      </header>
+          
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <nav className="lg:hidden absolute top-full left-0 right-0 bg-[#6941c6]/95 backdrop-blur-sm border-t border-white/20 z-50">
+              <div className="flex flex-col p-4 space-y-3">
+                <a href="/kt" className="text-white hover:text-yellow-300 transition-colors py-2">
+                  KT
+                </a>
+                <a href="/lg" className="text-white hover:text-yellow-300 transition-colors py-2">
+                  LG
+                </a>
+                <a href="/sk" className="text-white hover:text-yellow-300 transition-colors py-2">
+                  SK
+                </a>
+                <a href="/skylife" className="text-white hover:text-yellow-300 transition-colors py-2">
+                  스카이라이프
+                </a>
+                <a href="/lghellovision" className="text-white hover:text-yellow-300 transition-colors py-2">
+                  LG헬로비전
+                </a>
+                <a href="/skbroad" className="text-white hover:text-yellow-300 transition-colors py-2">
+                  SK브로드
+                </a>
+                <a href="/review" className="text-white hover:text-yellow-300 transition-colors py-2">
+                  설치후기
+                </a>
+                <a href="/events" className="text-white hover:text-yellow-300 transition-colors py-2">
+                  이벤트
+                </a>
+              </div>
+            </nav>
+          )}
+        </header>
 
-      {/* Main content */}
-      <div className="container mx-auto px-4 sm:px-6 py-8 md:py-12">
+        {/* Main content */}
+        <div className="container mx-auto px-4 sm:px-6 py-8 md:py-12">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left content */}
           <div className="text-white space-y-6 text-center lg:text-left">
@@ -310,6 +374,7 @@ export default function TelecomLanding() {
           </div>
         </div>
       </div>
+      </div>
 
       {/* Plans Section */}
       <section className="py-20 bg-gray-50">
@@ -401,21 +466,24 @@ export default function TelecomLanding() {
             {/* Left Column */}
             <div className="space-y-8">
               <Card className="bg-purple-50 border-0 p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-3xl font-bold text-gray-900 mb-4">
                   현금 지원 140만원 업계 1등
                   <br />
-                  <span className="text-sm font-normal">(인터넷 48만원 + 인싸통 비밀지원금 +α)</span>
+                  <span className="text-lg font-bold text-gray-800">(인터넷 48만원 + 인싸통 비밀지원금 +α)</span>
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
                   요금은 본사 그대로, 현금은 업계 최고로
                   <br />
                   타업체보다 혜택이 적다면 차액의 120% 보상해드려요
                 </p>
-                <div className="mt-6 p-6 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl">
-                  <div className="text-center">
-                    <p className="text-5xl font-bold text-yellow-600">₩</p>
-                    <p className="text-2xl font-bold text-gray-800 mt-2">최대 140만원</p>
-                  </div>
+                <div className="mt-6 flex justify-center">
+                  <Image 
+                    src="/art1.png" 
+                    alt="현금 지원 혜택" 
+                    width={300} 
+                    height={200}
+                    className="object-contain"
+                  />
                 </div>
               </Card>
             </div>
@@ -424,7 +492,7 @@ export default function TelecomLanding() {
             <div className="space-y-8">
               <Card className="bg-blue-50 border-0 p-8">
                 <div className="flex items-start justify-between">
-                  <div>
+                  <div className="flex-1">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">
                       고민할 필요 없이
                       <br />
@@ -438,12 +506,21 @@ export default function TelecomLanding() {
                       쉽고 빠르게 대표 통신사 3사 전부 비교 가능
                     </p>
                   </div>
+                  <div className="ml-4 flex-shrink-0">
+                    <Image 
+                      src="/art2.png" 
+                      alt="맞춤 추천 서비스" 
+                      width={180} 
+                      height={180}
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
               </Card>
 
               <Card className="bg-orange-50 border-0 p-8">
                 <div className="flex items-start justify-between">
-                  <div>
+                  <div className="flex-1">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">
                       더는 기다리지 마세요
                       <br />
@@ -454,6 +531,15 @@ export default function TelecomLanding() {
                       <br />
                       가장 빠른 날짜로 설치해드려요
                     </p>
+                  </div>
+                  <div className="ml-4 flex-shrink-0">
+                    <Image 
+                      src="/art3.png" 
+                      alt="빠른 설치 서비스" 
+                      width={180} 
+                      height={180}
+                      className="object-contain"
+                    />
                   </div>
                 </div>
               </Card>
@@ -475,8 +561,14 @@ export default function TelecomLanding() {
           <div className="grid md:grid-cols-3 gap-12">
             <div className="text-center group">
               <div className="relative mb-8">
-                <div className="w-24 h-24 mx-auto bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center mb-4">
-                  <Phone className="w-12 h-12 text-white" />
+                <div className="w-24 h-24 mx-auto flex items-center justify-center mb-4">
+                  <Image 
+                    src="/call-icon.png" 
+                    alt="가입상담" 
+                    width={96} 
+                    height={96}
+                    className="object-contain"
+                  />
                 </div>
                 <ArrowRight className="absolute -right-8 top-1/2 transform -translate-y-1/2 w-6 h-6 text-purple-600 hidden md:block" />
               </div>
@@ -490,8 +582,14 @@ export default function TelecomLanding() {
 
             <div className="text-center group">
               <div className="relative mb-8">
-                <div className="w-24 h-24 mx-auto bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center mb-4">
-                  <MapPin className="w-12 h-12 text-white" />
+                <div className="w-24 h-24 mx-auto flex items-center justify-center mb-4">
+                  <Image 
+                    src="/map-pin-icon.png" 
+                    alt="설치" 
+                    width={96} 
+                    height={96}
+                    className="object-contain"
+                  />
                 </div>
                 <ArrowRight className="absolute -right-8 top-1/2 transform -translate-y-1/2 w-6 h-6 text-purple-600 hidden md:block" />
               </div>
@@ -505,13 +603,19 @@ export default function TelecomLanding() {
 
             <div className="text-center group">
               <div className="mb-8">
-                <div className="w-24 h-24 mx-auto bg-gradient-to-br from-blue-400 to-teal-500 rounded-full flex items-center justify-center mb-4">
-                  <CreditCard className="w-12 h-12 text-white" />
+                <div className="w-24 h-24 mx-auto flex items-center justify-center mb-4">
+                  <Image 
+                    src="/money-icon.png" 
+                    alt="현금 입금" 
+                    width={96} 
+                    height={96}
+                    className="object-contain"
+                  />
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">현금 입금</h3>
               <p className="text-gray-600">
-                인싸통은 편한 기준 설치 당일 입금을
+                인싸통은 평일 기준 설치 당일 입금을
                 <br />
                 원칙으로 하고 있어요.
               </p>
@@ -536,24 +640,31 @@ export default function TelecomLanding() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 via-purple-900 to-gray-800 text-white py-20">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-4">국내 최고의 혜택으로 안내해드립니다</h2>
-          <p className="text-xl mb-8">지금 바로 상담 신청하고 최대 140만원 혜택 받으세요!</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              onClick={() => window.location.href = 'tel:15551648'}
-              className="bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-4 text-lg font-bold rounded-full"
-            >
-              <Phone className="mr-2 w-5 h-5" />
-              1555-1648 전화하기
-            </Button>
+      <section className="relative bg-gradient-to-br from-gray-900 via-purple-900 to-gray-800 text-white py-32 md:py-40 lg:py-48" style={{
+        backgroundImage: 'url("/spi.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '500px'
+      }}>
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left flex flex-col justify-center" style={{ minHeight: '400px' }}>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white">
+            국내 최고의 혜택으로
+            <br />
+            안내해 드리겠습니다.
+          </h2>
+          <div className="space-y-2 mb-8">
+            <p className="text-lg text-white/90">오전 10:00 ~ 오후 06:00</p>
+            <p className="text-5xl font-bold text-white">1555-1648</p>
+          </div>
+          <div className="flex justify-start">
             <Button 
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="bg-white hover:bg-gray-100 text-purple-600 px-8 py-4 text-lg font-bold rounded-full"
+              className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-lg font-bold rounded-full"
             >
-              온라인 상담 신청
+              문의하기
+              <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </div>
         </div>
@@ -614,6 +725,6 @@ export default function TelecomLanding() {
           </Button>
         </div>
       </footer>
-    </div>
+    </>
   )
 }

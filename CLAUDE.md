@@ -2,6 +2,21 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Important Instructions
+
+### Task Completion Notification
+When completing any task or set of modifications requested by the user, always run the `notify` command in the terminal to send a notification. This helps the user know when work is complete.
+
+```bash
+notify
+```
+
+Run this command after:
+- Completing code modifications
+- Finishing a feature implementation
+- Resolving bugs
+- Any other task completion
+
 ## Project Overview
 
 Korean telecom service landing page built with Next.js 15 App Router, TypeScript, and Tailwind CSS v4. The application features a lead generation form with Supabase backend integration and an admin dashboard for lead management.
