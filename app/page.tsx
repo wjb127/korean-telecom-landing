@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
-import { User, Menu, X } from "lucide-react"
+import { User, Menu, X, ArrowRight, Phone, MapPin, CreditCard, Star, Instagram, MessageCircle } from "lucide-react"
 
 export default function TelecomLanding() {
   const router = useRouter()
@@ -310,6 +310,310 @@ export default function TelecomLanding() {
           </div>
         </div>
       </div>
+
+      {/* Plans Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <span className="text-purple-600">인싸통</span>만의 특별 혜택
+              <br />각 통신사 대표 상품
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* KT Plan */}
+            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8">
+                <div className="flex items-center justify-between mb-6">
+                  <span className="text-2xl font-bold text-blue-600">KT</span>
+                  <span className="text-sm text-purple-600 font-medium cursor-pointer hover:underline">
+                    최대지원금 확인하기 →
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  인터넷 베이직 500MB + TV
+                  <br />
+                  베이직
+                </h3>
+                <div className="space-y-2">
+                  <p className="text-sm text-gray-500 line-through">45,100원</p>
+                  <p className="text-3xl font-bold text-purple-600">39,600원/월</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* SK Plan */}
+            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8">
+                <div className="flex items-center justify-between mb-6">
+                  <span className="text-2xl font-bold text-red-600">SK</span>
+                  <span className="text-sm text-purple-600 font-medium cursor-pointer hover:underline">
+                    최대지원금 확인하기 →
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  기가라이트 인터넷 500MB + BTV
+                  <br />
+                  스탠다드
+                </h3>
+                <div className="space-y-2">
+                  <p className="text-sm text-gray-500 line-through">46,200원</p>
+                  <p className="text-3xl font-bold text-purple-600">39,600원/월</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* LG U+ Plan */}
+            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8">
+                <div className="flex items-center justify-between mb-6">
+                  <span className="text-2xl font-bold text-pink-600">LG U+</span>
+                  <span className="text-sm text-purple-600 font-medium cursor-pointer hover:underline">
+                    최대지원금 확인하기 →
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  와이파이 기본 500MB + TV
+                  <br />
+                  베이직
+                </h3>
+                <div className="space-y-2">
+                  <p className="text-sm text-gray-500 line-through">44,000원</p>
+                  <p className="text-3xl font-bold text-purple-600">34,100원/월</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <span className="text-purple-600">인싸통</span>에서는
+              <br />
+              모든 혜택을 받을 수 있어요
+            </h2>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Left Column */}
+            <div className="space-y-8">
+              <Card className="bg-purple-50 border-0 p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  현금 지원 140만원 업계 1등
+                  <br />
+                  <span className="text-sm font-normal">(인터넷 48만원 + 인싸통 비밀지원금 +α)</span>
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  요금은 본사 그대로, 현금은 업계 최고로
+                  <br />
+                  타업체보다 혜택이 적다면 차액의 120% 보상해드려요
+                </p>
+                <div className="mt-6 p-6 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl">
+                  <div className="text-center">
+                    <p className="text-5xl font-bold text-yellow-600">₩</p>
+                    <p className="text-2xl font-bold text-gray-800 mt-2">최대 140만원</p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            {/* Right Column */}
+            <div className="space-y-8">
+              <Card className="bg-blue-50 border-0 p-8">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                      고민할 필요 없이
+                      <br />
+                      맞춤으로 추천해드려요
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      불필요한 부가서비스를 강요하지 않아요
+                      <br />
+                      전문 매니저가 1:1 맞춤으로 서비스를 찾아드려요
+                      <br />
+                      쉽고 빠르게 대표 통신사 3사 전부 비교 가능
+                    </p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="bg-orange-50 border-0 p-8">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                      더는 기다리지 마세요
+                      <br />
+                      빠르게 설치해드릴게요
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      고객님이 원하는 일정,
+                      <br />
+                      가장 빠른 날짜로 설치해드려요
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              어려운 가입 과정을
+              <br />
+              쉽고 간편하게 가입하세요
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-12">
+            <div className="text-center group">
+              <div className="relative mb-8">
+                <div className="w-24 h-24 mx-auto bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center mb-4">
+                  <Phone className="w-12 h-12 text-white" />
+                </div>
+                <ArrowRight className="absolute -right-8 top-1/2 transform -translate-y-1/2 w-6 h-6 text-purple-600 hidden md:block" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">가입상담</h3>
+              <p className="text-gray-600">
+                친절한 무료상담으로 다양한 통신사 혜택
+                <br />
+                전부 비교 가능해요.
+              </p>
+            </div>
+
+            <div className="text-center group">
+              <div className="relative mb-8">
+                <div className="w-24 h-24 mx-auto bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center mb-4">
+                  <MapPin className="w-12 h-12 text-white" />
+                </div>
+                <ArrowRight className="absolute -right-8 top-1/2 transform -translate-y-1/2 w-6 h-6 text-purple-600 hidden md:block" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">설치</h3>
+              <p className="text-gray-600">
+                고객님이 원하시는 날짜를 조율하여
+                <br />
+                설치가 가능합니다.
+              </p>
+            </div>
+
+            <div className="text-center group">
+              <div className="mb-8">
+                <div className="w-24 h-24 mx-auto bg-gradient-to-br from-blue-400 to-teal-500 rounded-full flex items-center justify-center mb-4">
+                  <CreditCard className="w-12 h-12 text-white" />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">현금 입금</h3>
+              <p className="text-gray-600">
+                인싸통은 편한 기준 설치 당일 입금을
+                <br />
+                원칙으로 하고 있어요.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Review Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="flex justify-center mb-6">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-8 h-8 text-yellow-400 fill-current" />
+            ))}
+          </div>
+          <blockquote className="text-3xl font-bold text-gray-900 mb-8">"사은품 많이 주셔서 감사해요"</blockquote>
+          <div className="text-gray-600">
+            <p>2025. 08. 19 @주승* 님 후기</p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative bg-gradient-to-br from-gray-900 via-purple-900 to-gray-800 text-white py-20">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-bold mb-4">국내 최고의 혜택으로 안내해드립니다</h2>
+          <p className="text-xl mb-8">지금 바로 상담 신청하고 최대 140만원 혜택 받으세요!</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              onClick={() => window.location.href = 'tel:15551648'}
+              className="bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-4 text-lg font-bold rounded-full"
+            >
+              <Phone className="mr-2 w-5 h-5" />
+              1555-1648 전화하기
+            </Button>
+            <Button 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="bg-white hover:bg-gray-100 text-purple-600 px-8 py-4 text-lg font-bold rounded-full"
+            >
+              온라인 상담 신청
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-purple-600 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold mb-6">인싸통</h3>
+            <div className="grid md:grid-cols-2 gap-6 text-sm">
+              <div className="space-y-2">
+                <p>상호: 컨우네트웍스 | 사이트명: 인싸통 | 대표자명: 엄승준</p>
+                <p>사업자등록번호: 648-09-02569 | 대표번호: 1555-1648</p>
+                <p>주소: 서울 구로구 디지털로34길 55 코오롱싸이언스밸리2차 904호</p>
+              </div>
+              <div className="space-y-2">
+                <div className="flex flex-wrap gap-4">
+                  <a href="#" className="hover:text-purple-200">서비스이용약관</a>
+                  <a href="#" className="hover:text-purple-200 font-bold">개인정보처리방침</a>
+                  <a href="#" className="hover:text-purple-200">마케팅정보수신동의</a>
+                </div>
+                <p className="text-xs text-purple-200">
+                  ※ 본 사이트는 통신사 공식 사이트가 아닌 통신서비스 판매 대리점입니다.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-purple-500 pt-6">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <p className="text-sm">Copyright 2025 © 인싸통. All rights reserved.</p>
+              <div className="flex space-x-3 mt-4 md:mt-0">
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100 transition">
+                  <Instagram className="w-5 h-5 text-purple-600" />
+                </div>
+                <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center cursor-pointer hover:bg-yellow-500 transition">
+                  <MessageCircle className="w-5 h-5 text-black" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Floating Buttons */}
+        <div className="fixed bottom-6 right-6 space-y-3 z-50">
+          <Button 
+            onClick={() => window.open('http://pf.kakao.com/_xexdxjxj', '_blank')}
+            className="w-14 h-14 rounded-full bg-yellow-400 hover:bg-yellow-500 text-black shadow-lg"
+          >
+            <MessageCircle className="w-6 h-6" />
+          </Button>
+          <Button 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="w-14 h-14 rounded-full bg-white hover:bg-gray-100 text-black shadow-lg"
+          >
+            <ArrowRight className="w-6 h-6 rotate-[-90deg]" />
+          </Button>
+        </div>
+      </footer>
     </div>
   )
 }
