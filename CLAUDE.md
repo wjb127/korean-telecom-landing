@@ -30,34 +30,34 @@ Korean telecom service landing page built with Next.js 15 App Router, TypeScript
 - **Forms**: react-hook-form with zod validation
 - **Database**: Supabase (PostgreSQL)
 - **Testing**: Jest with React Testing Library
-- **Package Manager**: pnpm (based on pnpm-lock.yaml presence)
+- **Package Manager**: npm (based on package-lock.json presence)
 
 ## Development Commands
 
 ```bash
 # Install dependencies
-pnpm install
+npm install
 
 # Start development server
-pnpm run dev
+npm run dev
 
 # Build for production
-pnpm run build
+npm run build
 
 # Start production server
-pnpm run start
+npm run start
 
 # Run linting
-pnpm run lint
+npm run lint
 
 # Run tests
-pnpm run test
+npm run test
 
 # Run tests in watch mode
-pnpm run test:watch
+npm run test:watch
 
 # Run tests with coverage
-pnpm run test:coverage
+npm run test:coverage
 ```
 
 ## Environment Configuration
@@ -77,12 +77,19 @@ Required environment variables (see .env.local for reference):
 - `/api/submit-lead` - API endpoint for form submission
 - `/api/admin/leads` - API endpoint for admin lead operations (GET, DELETE)
 
+### Key Components
+- **`app/page.tsx`**: Main landing page with hero section, features, pricing, and integrated lead form
+- **`components/testimonial-carousel.tsx`**: Auto-scrolling testimonial component with 4-second intervals
+- **`components/admin-dashboard.tsx`**: Lead management interface with CSV export functionality
+- **`lib/supabase.ts`**: Supabase client configuration and type definitions
+
 ### Key Features
 1. **Lead Generation Form**: Collects name, phone, carrier selection, and service type
 2. **Supabase Integration**: Stores leads with IP address and user agent tracking
 3. **Admin Dashboard**: View, export (CSV), and delete leads with password protection
 4. **Form Validation**: Client-side validation using zod schemas
 5. **Responsive Design**: Mobile-optimized with hamburger menu navigation
+6. **Testimonial Carousel**: Auto-scrolling customer testimonials with manual navigation
 
 ### Database Schema
 The Supabase `leads` table includes:
@@ -104,3 +111,18 @@ Jest is configured with:
 - Next.js config has ESLint and TypeScript errors disabled during builds (`ignoreDuringBuilds: true`, `ignoreBuildErrors: true`)
 - Images are set to unoptimized mode
 - TypeScript path alias `@/*` points to project root for clean imports
+
+## Important Styling Notes
+
+- Mobile-first responsive design with Tailwind breakpoints (sm, md, lg)
+- Purple color scheme (#7C3AED) used as primary brand color
+- Hero text uses `whitespace-nowrap` to prevent unwanted line breaks on mobile
+- Navigation includes mobile hamburger menu that slides in from the right
+
+## Assets
+
+Key image assets in `/public`:
+- `hero.png` - Hero section background
+- `spi.png` - CTA section background
+- `art1.png`, `art2.png`, `art3.png` - Feature illustrations
+- `money-icon.png`, `headset-icon.png`, `shield-icon.png` - Service icons

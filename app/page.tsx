@@ -267,12 +267,12 @@ export default function TelecomLanding() {
                     <Label htmlFor="phone" className="text-gray-700 font-medium">
                       휴대폰 번호
                     </Label>
-                    <div className="flex mt-2 gap-1 sm:gap-2 items-center">
+                    <div className="flex mt-2 gap-2 sm:gap-3 items-center">
                       <Input
                         type="text"
                         value="010"
                         readOnly
-                        className="h-10 sm:h-12 w-16 sm:w-20 text-center bg-gray-50 border-gray-200 text-sm sm:text-base"
+                        className="h-10 sm:h-12 flex-1 text-center bg-gray-50 border-gray-200 text-sm sm:text-base"
                       />
                       <span className="text-gray-400">-</span>
                       <Input
@@ -283,7 +283,7 @@ export default function TelecomLanding() {
                           const secondPart = formData.phone.split("-")[1] || ""
                           setFormData({ ...formData, phone: `${value}-${secondPart}` })
                         }}
-                        className="h-10 sm:h-12 w-16 sm:w-20 text-sm sm:text-base"
+                        className="h-10 sm:h-12 flex-1 text-center text-sm sm:text-base"
                         placeholder="1234"
                         maxLength={4}
                         required
@@ -297,7 +297,7 @@ export default function TelecomLanding() {
                           const firstPart = formData.phone.split("-")[0] || ""
                           setFormData({ ...formData, phone: `${firstPart}-${value}` })
                         }}
-                        className="h-10 sm:h-12 w-16 sm:w-20 text-sm sm:text-base"
+                        className="h-10 sm:h-12 flex-1 text-center text-sm sm:text-base"
                         placeholder="5678"
                         maxLength={4}
                         required

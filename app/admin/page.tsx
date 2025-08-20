@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Download, LogOut, RefreshCw, Users, Phone, Briefcase, TrendingUp } from "lucide-react"
+import { Download, LogOut, RefreshCw, Users, Phone, Briefcase, TrendingUp, Trash2, Edit } from "lucide-react"
 
 type Lead = {
   id: number
@@ -26,6 +26,8 @@ export default function AdminDashboard() {
   const [error, setError] = useState("")
   const [leads, setLeads] = useState<Lead[]>([])
   const [loading, setLoading] = useState(false)
+  const [editingId, setEditingId] = useState<number | null>(null)
+  const [editForm, setEditForm] = useState<Partial<Lead>>({})
   const [stats, setStats] = useState({
     total: 0,
     today: 0,
@@ -64,7 +66,11 @@ export default function AdminDashboard() {
   const fetchLeads = async () => {
     setLoading(true)
     try {
-      const response = await fetch("/api/admin/leads")
+      const response = await fetch("/api/admin/leads", {
+        headers: {
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'kmong_telecom_2025!'}`
+        }
+      })
       if (response.ok) {
         const data = await response.json()
         setLeads(data.leads || [])
@@ -107,8 +113,53 @@ export default function AdminDashboard() {
     })
   }
 
+  const handleDelete = async (id: number) => {
+    if (!confirm('정말 삭제하시겠습니까?')) return
+    
+    try {
+      const response = await fetch(`/api/admin/leads?id=${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'kmong_telecom_2025!'}`
+        }
+      })
+      
+      if (response.ok) {
+        fetchLeads() // Refresh the list
+      }
+    } catch (error) {
+      console.error('Failed to delete lead:', error)
+    }
+  }
+
+  const handleEdit = (lead: Lead) => {
+    setEditingId(lead.id)
+    setEditForm({
+      name: lead.name,
+      phone: lead.phone,
+      carrier: lead.carrier,
+      service: lead.service
+    })
+  }
+
+  const handleUpdate = async (id: number) => {
+    // For now, just update locally since we don't have a real update API
+    setLeads(leads.map(lead => 
+      lead.id === id 
+        ? { ...lead, ...editForm }
+        : lead
+    ))
+    setEditingId(null)
+    setEditForm({})
+  }
+
+  const handleCancel = () => {
+    setEditingId(null)
+    setEditForm({})
+  }
+
   const exportToCSV = () => {
-    const headers = ["ID", "이름", "전화번호", "통신사", "서비스", "등록일시", "IP주소"]
+    const headers = ["ID", "이름", "전화번호", "통신사", "서비스", "등록일시"]
     const csvContent = [
       headers.join(","),
       ...leads.map(lead => [
@@ -117,8 +168,7 @@ export default function AdminDashboard() {
         lead.phone,
         lead.carrier,
         lead.service,
-        new Date(lead.created_at).toLocaleString("ko-KR"),
-        lead.ip_address
+        new Date(lead.created_at).toLocaleString("ko-KR")
       ].join(","))
     ].join("\n")
 
@@ -300,17 +350,66 @@ export default function AdminDashboard() {
                       <TableHead className="text-xs sm:text-sm hidden sm:table-cell">통신사</TableHead>
                       <TableHead className="text-xs sm:text-sm hidden md:table-cell">서비스</TableHead>
                       <TableHead className="text-xs sm:text-sm">등록일시</TableHead>
-                      <TableHead className="text-xs sm:text-sm hidden lg:table-cell">IP주소</TableHead>
+                      <TableHead className="text-xs sm:text-sm text-center">관리</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {leads.map((lead) => (
                       <TableRow key={lead.id}>
                         <TableCell className="text-xs sm:text-sm">{lead.id}</TableCell>
-                        <TableCell className="text-xs sm:text-sm">{lead.name}</TableCell>
-                        <TableCell className="text-xs sm:text-sm">{lead.phone}</TableCell>
-                        <TableCell className="text-xs sm:text-sm hidden sm:table-cell">{lead.carrier}</TableCell>
-                        <TableCell className="text-xs sm:text-sm hidden md:table-cell">{lead.service}</TableCell>
+                        <TableCell className="text-xs sm:text-sm">
+                          {editingId === lead.id ? (
+                            <Input
+                              value={editForm.name || ''}
+                              onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
+                              className="h-8 text-xs sm:text-sm"
+                            />
+                          ) : (
+                            lead.name
+                          )}
+                        </TableCell>
+                        <TableCell className="text-xs sm:text-sm">
+                          {editingId === lead.id ? (
+                            <Input
+                              value={editForm.phone || ''}
+                              onChange={(e) => setEditForm({ ...editForm, phone: e.target.value })}
+                              className="h-8 text-xs sm:text-sm"
+                            />
+                          ) : (
+                            lead.phone
+                          )}
+                        </TableCell>
+                        <TableCell className="text-xs sm:text-sm hidden sm:table-cell">
+                          {editingId === lead.id ? (
+                            <select
+                              value={editForm.carrier || ''}
+                              onChange={(e) => setEditForm({ ...editForm, carrier: e.target.value })}
+                              className="h-8 text-xs sm:text-sm border rounded px-2 w-full"
+                            >
+                              <option value="KT">KT</option>
+                              <option value="SKT">SKT</option>
+                              <option value="LG U+">LG U+</option>
+                              <option value="알뜰폰">알뜰폰</option>
+                            </select>
+                          ) : (
+                            lead.carrier
+                          )}
+                        </TableCell>
+                        <TableCell className="text-xs sm:text-sm hidden md:table-cell">
+                          {editingId === lead.id ? (
+                            <select
+                              value={editForm.service || ''}
+                              onChange={(e) => setEditForm({ ...editForm, service: e.target.value })}
+                              className="h-8 text-xs sm:text-sm border rounded px-2 w-full"
+                            >
+                              <option value="인터넷">인터넷</option>
+                              <option value="인터넷+TV">인터넷+TV</option>
+                              <option value="인터넷+TV+전화">인터넷+TV+전화</option>
+                            </select>
+                          ) : (
+                            lead.service
+                          )}
+                        </TableCell>
                         <TableCell className="text-xs sm:text-sm">
                           {new Date(lead.created_at).toLocaleString("ko-KR", {
                             month: '2-digit',
@@ -319,7 +418,49 @@ export default function AdminDashboard() {
                             minute: '2-digit'
                           })}
                         </TableCell>
-                        <TableCell className="text-xs sm:text-sm hidden lg:table-cell">{lead.ip_address}</TableCell>
+                        <TableCell className="text-xs sm:text-sm">
+                          <div className="flex gap-1 justify-center">
+                            {editingId === lead.id ? (
+                              <>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => handleUpdate(lead.id)}
+                                  className="h-7 px-2"
+                                >
+                                  저장
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={handleCancel}
+                                  className="h-7 px-2"
+                                >
+                                  취소
+                                </Button>
+                              </>
+                            ) : (
+                              <>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => handleEdit(lead)}
+                                  className="h-7 w-7 p-0"
+                                >
+                                  <Edit className="h-3 w-3" />
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => handleDelete(lead.id)}
+                                  className="h-7 w-7 p-0 text-red-600 hover:text-red-700"
+                                >
+                                  <Trash2 className="h-3 w-3" />
+                                </Button>
+                              </>
+                            )}
+                          </div>
+                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

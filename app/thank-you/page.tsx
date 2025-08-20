@@ -81,31 +81,6 @@ export default function ThankYouPage() {
               </div>
             </div>
 
-            {/* Contact Info */}
-            <div className="bg-blue-50 rounded-lg p-6 mb-8">
-              <h3 className="font-semibold text-gray-900 mb-3">
-                빠른 상담을 원하신다면?
-              </h3>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  variant="outline"
-                  className="flex items-center gap-2"
-                  onClick={() => window.open('tel:1588-0000')}
-                >
-                  <Phone className="w-4 h-4" />
-                  전화 상담: 1588-0000
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex items-center gap-2 bg-yellow-400 text-gray-900 hover:bg-yellow-300"
-                  onClick={() => window.open('http://pf.kakao.com/_example')}
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  카카오톡 상담
-                </Button>
-              </div>
-            </div>
-
             {/* Notice */}
             <div className="text-sm text-gray-500 mb-6">
               <p className="mb-2">
@@ -116,20 +91,13 @@ export default function ThankYouPage() {
               </p>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {/* Action Button */}
+            <div className="flex justify-center">
               <Button
                 onClick={() => router.push("/")}
                 className="bg-[#6941c6] hover:bg-[#5a37b0] text-white px-8 py-3"
               >
                 홈으로 돌아가기
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => router.push("/admin")}
-                className="px-8 py-3"
-              >
-                신청 내역 확인
               </Button>
             </div>
 
