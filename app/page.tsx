@@ -490,8 +490,8 @@ export default function TelecomLanding() {
             {/* Right Column */}
             <div className="space-y-8">
               <Card className="bg-blue-50 border-0 p-8">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
+                <div className="flex flex-col-reverse sm:flex-row items-center sm:items-start justify-between">
+                  <div className="flex-1 text-center sm:text-left mt-6 sm:mt-0">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">
                       고민할 필요 없이
                       <br />
@@ -505,7 +505,7 @@ export default function TelecomLanding() {
                       쉽고 빠르게 대표 통신사 3사 전부 비교 가능
                     </p>
                   </div>
-                  <div className="ml-4 flex-shrink-0">
+                  <div className="sm:ml-4 flex-shrink-0">
                     <Image 
                       src="/art2.png" 
                       alt="맞춤 추천 서비스" 
@@ -518,8 +518,8 @@ export default function TelecomLanding() {
               </Card>
 
               <Card className="bg-orange-50 border-0 p-8">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
+                <div className="flex flex-col-reverse sm:flex-row items-center sm:items-start justify-between">
+                  <div className="flex-1 text-center sm:text-left mt-6 sm:mt-0">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">
                       더는 기다리지 마세요
                       <br />
@@ -531,7 +531,7 @@ export default function TelecomLanding() {
                       가장 빠른 날짜로 설치해드려요
                     </p>
                   </div>
-                  <div className="ml-4 flex-shrink-0">
+                  <div className="sm:ml-4 flex-shrink-0">
                     <Image 
                       src="/art3.png" 
                       alt="빠른 설치 서비스" 
