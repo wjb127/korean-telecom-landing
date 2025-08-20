@@ -225,10 +225,8 @@ export default function TelecomLanding() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
                 <span className="block">지금 통신사</span>
                 <span className="block">변경하면?!</span>
-                <span className="block text-yellow-400 text-2xl sm:text-3xl lg:text-4xl mt-2">최대</span>
-                <span className="block text-yellow-400 text-3xl sm:text-4xl lg:text-5xl">140만원 혜택</span>
-                <span className="block text-white text-xl sm:text-2xl lg:text-3xl mt-2">현금</span>
-                <span className="block text-white text-xl sm:text-2xl lg:text-3xl">당일 지급!</span>
+                <span className="block text-yellow-400 text-2xl sm:text-3xl lg:text-5xl mt-2 whitespace-nowrap">최대 140만원 혜택</span>
+                <span className="block text-white text-xl sm:text-2xl lg:text-3xl mt-2 whitespace-nowrap">현금 당일 지급!</span>
               </h1>
             </div>
 
