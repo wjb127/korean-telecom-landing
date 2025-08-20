@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
 import { User, Menu, X, ArrowRight, Phone, MapPin, CreditCard, Star, Instagram, MessageCircle } from "lucide-react"
 import Image from "next/image"
+import TestimonialCarousel from "@/components/testimonial-carousel"
 
 export default function TelecomLanding() {
   const router = useRouter()
@@ -626,16 +627,9 @@ export default function TelecomLanding() {
 
       {/* Review Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex justify-center mb-6">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-8 h-8 text-yellow-400 fill-current" />
-            ))}
-          </div>
-          <blockquote className="text-3xl font-bold text-gray-900 mb-8">"사은품 많이 주셔서 감사해요"</blockquote>
-          <div className="text-gray-600">
-            <p>2025. 08. 19 @주승* 님 후기</p>
-          </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">고객님들의 생생한 후기</h2>
+          <TestimonialCarousel />
         </div>
       </section>
 
