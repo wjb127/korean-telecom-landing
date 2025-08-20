@@ -221,16 +221,16 @@ export default function TelecomLanding() {
             </div>
 
             <div className="space-y-3 sm:space-y-4">
-              <p className="text-base sm:text-lg opacity-90">인터넷 · TV · 유심</p>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+              <p className="text-lg sm:text-lg opacity-90">인터넷 · TV · 유심</p>
+              <h1 className="text-4xl sm:text-4xl lg:text-5xl font-bold leading-tight">
                 <span className="block">지금 통신사</span>
                 <span className="block">변경하면?!</span>
-                <span className="block text-yellow-400 text-2xl sm:text-3xl lg:text-5xl mt-2 whitespace-nowrap">최대 140만원 혜택</span>
-                <span className="block text-white text-xl sm:text-2xl lg:text-3xl mt-2 whitespace-nowrap">현금 당일 지급!</span>
+                <span className="block text-yellow-400 text-3xl sm:text-3xl lg:text-5xl mt-2 whitespace-nowrap">최대 140만원 혜택</span>
+                <span className="block text-white text-2xl sm:text-2xl lg:text-3xl mt-2 whitespace-nowrap">현금 당일 지급!</span>
               </h1>
             </div>
 
-            <div className="space-y-2 text-base sm:text-lg">
+            <div className="space-y-2 text-lg sm:text-lg">
               <p>인싸통에서 상담받고</p>
               <p>숨은 지원금 받아가세요!</p>
             </div>
