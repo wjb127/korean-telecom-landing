@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Download, LogOut, RefreshCw, Users, Phone, Briefcase, TrendingUp, Trash2, Edit } from "lucide-react"
+import { Download, LogOut, RefreshCw, Users, Phone, Briefcase, TrendingUp, Trash2, Edit, Calendar, BarChart3 } from "lucide-react"
+import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
 type Lead = {
   id: number
@@ -35,6 +36,8 @@ export default function AdminDashboard() {
     byCarrier: {} as Record<string, number>,
     byService: {} as Record<string, number>
   })
+  const [chartView, setChartView] = useState<'daily' | 'weekly' | 'monthly'>('daily')
+  const [chartData, setChartData] = useState<any[]>([])
 
   useEffect(() => {
     // Check if already authenticated
@@ -111,7 +114,82 @@ export default function AdminDashboard() {
       byCarrier,
       byService
     })
+
+    // Calculate chart data
+    calculateChartData(leadsData, chartView)
   }
+
+  const calculateChartData = (leadsData: Lead[], view: 'daily' | 'weekly' | 'monthly') => {
+    const now = new Date()
+    const data: any[] = []
+
+    if (view === 'daily') {
+      // Last 7 days
+      for (let i = 6; i >= 0; i--) {
+        const date = new Date(now)
+        date.setDate(date.getDate() - i)
+        date.setHours(0, 0, 0, 0)
+        
+        const nextDate = new Date(date)
+        nextDate.setDate(nextDate.getDate() + 1)
+        
+        const count = leadsData.filter(lead => {
+          const leadDate = new Date(lead.created_at)
+          return leadDate >= date && leadDate < nextDate
+        }).length
+        
+        data.push({
+          name: `${date.getMonth() + 1}/${date.getDate()}`,
+          문의수: count
+        })
+      }
+    } else if (view === 'weekly') {
+      // Last 4 weeks
+      for (let i = 3; i >= 0; i--) {
+        const weekStart = new Date(now)
+        weekStart.setDate(weekStart.getDate() - (i * 7 + weekStart.getDay()))
+        weekStart.setHours(0, 0, 0, 0)
+        
+        const weekEnd = new Date(weekStart)
+        weekEnd.setDate(weekEnd.getDate() + 7)
+        
+        const count = leadsData.filter(lead => {
+          const leadDate = new Date(lead.created_at)
+          return leadDate >= weekStart && leadDate < weekEnd
+        }).length
+        
+        data.push({
+          name: i === 0 ? '이번주' : `${i}주 전`,
+          문의수: count
+        })
+      }
+    } else {
+      // Last 6 months
+      for (let i = 5; i >= 0; i--) {
+        const monthStart = new Date(now.getFullYear(), now.getMonth() - i, 1)
+        const monthEnd = new Date(now.getFullYear(), now.getMonth() - i + 1, 1)
+        
+        const count = leadsData.filter(lead => {
+          const leadDate = new Date(lead.created_at)
+          return leadDate >= monthStart && leadDate < monthEnd
+        }).length
+        
+        const monthNames = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+        data.push({
+          name: monthNames[monthStart.getMonth()],
+          문의수: count
+        })
+      }
+    }
+    
+    setChartData(data)
+  }
+
+  useEffect(() => {
+    if (leads.length > 0) {
+      calculateChartData(leads, chartView)
+    }
+  }, [chartView, leads])
 
   const handleDelete = async (id: number) => {
     if (!confirm('정말 삭제하시겠습니까?')) return
@@ -218,24 +296,20 @@ export default function AdminDashboard() {
         <div className="container mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
           <h1 className="text-xl sm:text-2xl font-bold">인싸통 관리자 대시보드</h1>
           <div className="flex gap-2 sm:gap-4 w-full sm:w-auto">
-            <Button 
+            <button 
               onClick={fetchLeads} 
-              variant="outline" 
-              className="text-white border-white hover:bg-white hover:text-[#6941c6] text-sm sm:text-base flex-1 sm:flex-none"
+              className="px-4 py-2 bg-white text-black font-medium rounded hover:bg-gray-100 transition-colors text-sm sm:text-base flex items-center justify-center flex-1 sm:flex-none"
             >
               <RefreshCw className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-              <span className="hidden sm:inline">새로고침</span>
-              <span className="sm:hidden">새로고침</span>
-            </Button>
-            <Button 
+              새로고침
+            </button>
+            <button 
               onClick={handleLogout}
-              variant="outline"
-              className="text-white border-white hover:bg-white hover:text-[#6941c6] text-sm sm:text-base flex-1 sm:flex-none"
+              className="px-4 py-2 bg-white text-black font-medium rounded hover:bg-gray-100 transition-colors text-sm sm:text-base flex items-center justify-center flex-1 sm:flex-none"
             >
               <LogOut className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-              <span className="hidden sm:inline">로그아웃</span>
-              <span className="sm:hidden">로그아웃</span>
-            </Button>
+              로그아웃
+            </button>
           </div>
         </div>
       </div>
@@ -293,6 +367,73 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Chart Section */}
+        <Card className="mb-6">
+          <CardHeader>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+              <CardTitle className="flex items-center gap-2">
+                <BarChart3 className="w-5 h-5" />
+                문의 추세 분석
+              </CardTitle>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setChartView('daily')}
+                  className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
+                    chartView === 'daily' 
+                      ? 'bg-[#6941c6] text-white' 
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
+                >
+                  일별
+                </button>
+                <button
+                  onClick={() => setChartView('weekly')}
+                  className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
+                    chartView === 'weekly' 
+                      ? 'bg-[#6941c6] text-white' 
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
+                >
+                  주별
+                </button>
+                <button
+                  onClick={() => setChartView('monthly')}
+                  className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
+                    chartView === 'monthly' 
+                      ? 'bg-[#6941c6] text-white' 
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
+                >
+                  월별
+                </button>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="h-64 sm:h-80">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={chartData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis 
+                    dataKey="name" 
+                    tick={{ fontSize: 12 }}
+                    angle={chartView === 'monthly' ? 0 : -45}
+                    textAnchor={chartView === 'monthly' ? 'middle' : 'end'}
+                    height={chartView === 'monthly' ? 30 : 50}
+                  />
+                  <YAxis tick={{ fontSize: 12 }} />
+                  <Tooltip />
+                  <Bar 
+                    dataKey="문의수" 
+                    fill="#6941c6" 
+                    radius={[8, 8, 0, 0]}
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Stats by Carrier and Service */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 mb-6">
